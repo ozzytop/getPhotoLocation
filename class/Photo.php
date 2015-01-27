@@ -37,4 +37,11 @@ class Photo
 	    return $results;   
 	}
 
+	public function getShortcode($shortcode)
+	{
+	    $url= 'https://api.instagram.com/v1/media/shortcode/'.$shortcode.'?client_id='.$this->clientId;
+	    $instagramInfo= $this->connectInstagramApi($url);
+	    $results = json_decode($instagramInfo, true);
+	    return $results;   
+	}
 }

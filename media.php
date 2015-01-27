@@ -20,6 +20,22 @@ if(isset($_GET['id']))
         print_r($resultadoEstado);
         print_r($resultadoDatos);        
     }
+}elseif(isset($_GET['shortcode'])) 
+{   
+    $shortcode= $_GET['shortcode'];
+    $datos=$location->getShortcode($shortcode,clientId);
+    if($datos['meta']['code']==400)
+    {
+        $resultadoEstado= json_encode($datos['meta']);
+        print_r($resultadoEstado);
+    }else 
+    {
+        $resultadoEstado= json_encode($datos['meta']);
+        $resultadoDatos=json_encode($datos['data']['location']);        
+        print_r($resultadoEstado);
+        print_r($resultadoDatos);        
+    }
+    
 }else
 {
     $error='{"status" : 400 , "error_type" : "invalid parameters"}';
